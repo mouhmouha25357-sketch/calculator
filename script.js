@@ -122,6 +122,27 @@ function calculate() {
     updateDisplay();
 }
 
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const btnLater = document.getElementById('btnLater');
+
+function showModal() {
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+modalClose.addEventListener('click', hideModal);
+btnLater.addEventListener('click', hideModal);
+
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) hideModal();
+});
+
 buttons.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn');
     if (!btn) return;
