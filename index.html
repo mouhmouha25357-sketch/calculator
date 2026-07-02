@@ -1,12 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle theme">
+        <svg class="sun-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 1V3M8 13V15M1 8H3M13 8H15M3.5 3.5L4.5 4.5M11.5 11.5L12.5 12.5M12.5 3.5L11.5 4.5M4.5 11.5L3.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg class="moon-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13.5 10.5C12 12.5 9 13.5 6 12.5C3 11.5 1.5 8.5 2 5.5C2.5 2.5 5.5 1 8.5 1C7.5 2.5 7.5 4.5 8.5 6C9.5 7.5 11 8.5 13 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <div class="calculator" role="application" aria-label="Calculator">
+        <div class="display">
+            <div class="display-value" id="display">0</div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-function" data-action="ac">AC</button>
+            <button class="btn btn-function" data-action="sign">±</button>
+            <button class="btn btn-function" data-action="percent">%</button>
+            <button class="btn btn-operator" data-action="divide">÷</button>
+
+            <button class="btn btn-number" data-value="7">7</button>
+            <button class="btn btn-number" data-value="8">8</button>
+            <button class="btn btn-number" data-value="9">9</button>
+            <button class="btn btn-operator" data-action="multiply">×</button>
+
+            <button class="btn btn-number" data-value="4">4</button>
+            <button class="btn btn-number" data-value="5">5</button>
+            <button class="btn btn-number" data-value="6">6</button>
+            <button class="btn btn-operator" data-action="subtract">−</button>
+
+            <button class="btn btn-number" data-value="1">1</button>
+            <button class="btn btn-number" data-value="2">2</button>
+            <button class="btn btn-number" data-value="3">3</button>
+            <button class="btn btn-operator" data-action="add">+</button>
+
+            <button class="btn btn-number btn-zero" data-value="0">0</button>
+            <button class="btn btn-number" data-value="decimal">.</button>
+            <button class="btn btn-operator btn-equals" data-action="equals">=</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" role="dialog" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <div class="modal-icon">
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                    <circle cx="28" cy="28" r="28" fill="rgba(255,149,0,0.1)"/>
+                    <path d="M28 12L31.5 21.5L42 22L34 29L36.5 39.5L28 33.5L19.5 39.5L22 29L14 22L24.5 21.5L28 12Z" fill="#FF9500"/>
+                    <circle cx="36" cy="20" r="3" fill="#FFD60A" opacity="0.8"/>
+                    <circle cx="18" cy="36" r="2" fill="#FFD60A" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <h2 class="modal-title" id="modalTitle">Upgrade your Calculator</h2>
+
+            <p class="modal-subtitle">
+                You've reached the free version of the calculator. Upgrade to unlock unlimited calculations and premium features.
+            </p>
+
+            <div class="pricing">
+                <div class="pricing-card pricing-free">
+                    <div class="pricing-label">Free</div>
+                    <h3 class="pricing-name">Basic Plan</h3>
+                    <ul class="pricing-features">
+                        <li>Limited calculations</li>
+                        <li>Ads enabled</li>
+                    </ul>
+                </div>
+                <div class="pricing-card pricing-pro">
+                    <div class="pricing-badge">Recommended</div>
+                    <div class="pricing-label">Pro</div>
+                    <h3 class="pricing-name">Premium Plan</h3>
+                    <ul class="pricing-features">
+                        <li>Unlimited calculations</li>
+                        <li>Calculation history</li>
+                        <li>Scientific calculator</li>
+                        <li>Custom themes</li>
+                        <li>No advertisements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-upgrade">Upgrade Now</button>
+                <button class="btn-later" id="btnLater">Maybe Later</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
