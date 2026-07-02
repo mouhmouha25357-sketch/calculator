@@ -241,3 +241,13 @@ document.addEventListener('keydown', (e) => {
         percent();
     }
 });
+
+const themeToggle = document.getElementById('themeToggle');
+
+themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    themeToggle.setAttribute('aria-label', `Switch to ${next} mode`);
+    playClick();
+});
