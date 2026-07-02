@@ -556,3 +556,111 @@ body::before {
 .btn-later:active {
     transform: scale(0.97);
 }
+
+@media (max-width: 420px) {
+    .calculator {
+        width: calc(100% - 24px);
+        padding: 12px;
+        border-radius: 20px;
+    }
+
+    .display {
+        padding: 20px 10px 14px 10px;
+        min-height: 84px;
+        margin-bottom: 10px;
+    }
+
+    .display-value {
+        font-size: 48px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    .btn {
+        font-size: 22px;
+    }
+
+    .btn-zero {
+        padding-left: 22px;
+    }
+
+    .btn-function {
+        font-size: 18px;
+    }
+
+    .btn-operator {
+        font-size: 26px;
+    }
+
+    .theme-toggle {
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .modal {
+        padding: 32px 24px 24px;
+        border-radius: 24px;
+    }
+
+    .modal-title {
+        font-size: 22px;
+    }
+
+    .pricing {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .pricing-badge {
+        position: static;
+        transform: none;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-height: 640px) {
+    .calculator {
+        padding: 12px;
+    }
+
+    .display {
+        padding: 14px 10px 10px 10px;
+        min-height: 64px;
+        margin-bottom: 8px;
+    }
+
+    .display-value {
+        font-size: 38px;
+    }
+
+    .buttons {
+        gap: 8px;
+    }
+
+    .btn {
+        font-size: 20px;
+    }
+
+    .btn-function {
+        font-size: 16px;
+    }
+
+    .btn-operator {
+        font-size: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
