@@ -165,7 +165,7 @@ buttons.addEventListener('click', (e) => {
             case 'multiply':
             case 'subtract':
             case 'add': setOperation(action); break;
-            case 'equals': calculate(); break;
+            case 'equals': showModal(); break;
         }
     }
 });
