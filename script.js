@@ -139,6 +139,11 @@ function hideModal() {
 modalClose.addEventListener('click', hideModal);
 btnLater.addEventListener('click', hideModal);
 
+document.querySelector('.btn-upgrade').addEventListener('click', function() {
+    this.classList.add('pressed');
+    setTimeout(() => this.classList.remove('pressed'), 300);
+});
+
 modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) hideModal();
 });
@@ -146,6 +151,9 @@ modalOverlay.addEventListener('click', (e) => {
 buttons.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn');
     if (!btn) return;
+
+    btn.classList.add('pressed');
+    setTimeout(() => btn.classList.remove('pressed'), 100);
 
     const value = btn.dataset.value;
     const action = btn.dataset.action;

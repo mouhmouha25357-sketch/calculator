@@ -61,6 +61,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.3s ease;
     -webkit-user-select: none;
     user-select: none;
 }
@@ -89,6 +90,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.25s ease;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -96,6 +98,11 @@ body::before {
 .theme-toggle:hover {
     color: var(--theme-toggle-hover);
     background: var(--btn-later-hover);
+    transform: scale(1.08);
+}
+
+.theme-toggle:active {
+    transform: scale(0.92);
 }
 
 [data-theme="dark"] .theme-toggle .sun-icon {
@@ -123,6 +130,12 @@ body::before {
     padding: 16px;
     box-shadow: var(--calculator-shadow);
     border: var(--calculator-border);
+    transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.calculator:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 35px 90px rgba(0,0,0,0.55);
 }
 
 .display {
@@ -135,6 +148,7 @@ body::before {
     align-items: flex-end;
     justify-content: flex-end;
     overflow: hidden;
+    transition: background 0.3s ease;
 }
 
 .display-value {
@@ -147,6 +161,7 @@ body::before {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transition: color 0.3s ease, font-size 0.15s ease;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
 }
@@ -168,6 +183,8 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.08s ease, background 0.12s ease, box-shadow 0.12s ease;
+    position: relative;
     -webkit-tap-highlight-color: transparent;
     outline: none;
     box-shadow: var(--btn-shadow);
@@ -187,6 +204,13 @@ body::before {
     background: var(--btn-number-hover);
 }
 
+.btn-number:active,
+.btn-number.pressed {
+    transform: scale(0.92);
+    background: var(--btn-number-hover);
+    filter: brightness(1.1);
+}
+
 .btn-function {
     background: var(--btn-function-bg);
     color: var(--btn-function-text);
@@ -195,6 +219,12 @@ body::before {
 
 .btn-function:hover {
     background: var(--btn-function-hover);
+}
+
+.btn-function:active,
+.btn-function.pressed {
+    transform: scale(0.92);
+    filter: brightness(0.9);
 }
 
 .btn-operator {
@@ -206,6 +236,12 @@ body::before {
 
 .btn-operator:hover {
     background: var(--btn-operator-hover);
+}
+
+.btn-operator:active,
+.btn-operator.pressed {
+    transform: scale(0.92);
+    filter: brightness(1.15);
 }
 
 .btn-zero {
@@ -228,6 +264,7 @@ body::before {
     justify-content: center;
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.4s ease;
     padding: 20px;
 }
 
@@ -248,6 +285,14 @@ body::before {
     border: var(--modal-border);
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
+    transform: scale(0.92) translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
 }
 
 .modal-close {
@@ -264,11 +309,17 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
 }
 
 .modal-close:hover {
     background: var(--btn-later-bg);
     color: var(--close-btn-hover);
+    transform: rotate(90deg);
+}
+
+.modal-close:active {
+    transform: rotate(90deg) scale(0.9);
 }
 
 .modal-icon {
@@ -315,7 +366,13 @@ body::before {
     border: 1px solid var(--pricing-border);
     border-radius: 16px;
     padding: 20px 16px 16px;
+    transition: all 0.25s ease;
     position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .pricing-pro {
@@ -336,6 +393,15 @@ body::before {
     border-radius: 10px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.modal-title,
+.modal-subtitle,
+.pricing-label,
+.pricing-name,
+.pricing-features li {
+    transition: color 0.3s ease;
 }
 
 .pricing-label {
@@ -406,12 +472,21 @@ body::before {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.2s ease;
     letter-spacing: -0.01em;
     box-shadow: 0 4px 16px rgba(255,149,0,0.3);
 }
 
 .btn-upgrade:hover {
+    transform: scale(1.02);
     filter: brightness(1.1);
+    box-shadow: 0 6px 24px rgba(255,149,0,0.4);
+}
+
+.btn-upgrade:active,
+.btn-upgrade.pressed {
+    transform: scale(0.97);
+    filter: brightness(0.95);
 }
 
 .btn-later {
@@ -425,9 +500,14 @@ body::before {
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .btn-later:hover {
     background: var(--btn-later-hover);
     color: var(--text-primary);
+}
+
+.btn-later:active {
+    transform: scale(0.97);
 }
