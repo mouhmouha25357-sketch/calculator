@@ -10,6 +10,25 @@ const MAX_DIGITS = 15;
 const display = document.getElementById('display');
 const buttons = document.querySelector('.buttons');
 
+let audioCtx = null;
+
+function playClick() {
+    try {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.value = 1200;
+        gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+        osc.start(audioCtx.currentTime);
+        osc.stop(audioCtx.currentTime + 0.03);
+    } catch (e) {}
+}
+
 function formatDisplay(value) {
     if (value === 'Error') return 'Error';
     const num = parseFloat(value);
@@ -152,6 +171,8 @@ buttons.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn');
     if (!btn) return;
 
+    playClick();
+
     btn.classList.add('pressed');
     setTimeout(() => btn.classList.remove('pressed'), 100);
 
@@ -175,5 +196,48 @@ buttons.addEventListener('click', (e) => {
             case 'add': setOperation(action); break;
             case 'equals': showModal(); break;
         }
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (modalOverlay.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            hideModal();
+        }
+        return;
+    }
+
+    if (e.key === 'Escape') {
+        clearAll();
+        playClick();
+        return;
+    }
+
+    playClick();
+
+    if (e.key >= '0' && e.key <= '9') {
+        inputNumber(e.key);
+    } else if (e.key === '.') {
+        inputDecimal();
+    } else if (e.key === 'Enter' || e.key === '=') {
+        e.preventDefault();
+        showModal();
+    } else if (e.key === 'Backspace') {
+        if (state.currentValue.length > 1) {
+            state.currentValue = state.currentValue.slice(0, -1);
+        } else {
+            state.currentValue = '0';
+        }
+        updateDisplay();
+    } else if (e.key === '/' || e.key === '÷') {
+        setOperation('divide');
+    } else if (e.key === '*' || e.key === '×') {
+        setOperation('multiply');
+    } else if (e.key === '-') {
+        setOperation('subtract');
+    } else if (e.key === '+') {
+        setOperation('add');
+    } else if (e.key === '%') {
+        percent();
     }
 });
